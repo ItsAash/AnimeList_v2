@@ -1,5 +1,6 @@
 import {
   Box,
+  BoxProps,
   Button,
   Flex,
   Grid,
@@ -15,9 +16,8 @@ import React from "react";
 import Hero from "../Hero";
 import { DarkModeSwitch } from "../DarkModeSwitch";
 import { BrowsePopOver } from "./BrowsePopOver";
-interface NavBarProps {}
 
-export const NavBar: React.FC<NavBarProps> = (props) => {
+export const NavBar: React.FC<BoxProps> = (props) => {
   const heroWidth = useBreakpointValue({ base: 40, md: 168 });
   return (
     <Box w="100vw" p={5} {...props}>

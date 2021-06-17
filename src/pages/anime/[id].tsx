@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Spinner, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { withUrqlClient } from "next-urql";
 import { useRouter } from "next/dist/client/router";
@@ -16,27 +16,42 @@ interface AnimeProps {
 
 const Anime: NextPage<AnimeProps> = () => {
   const { query } = useRouter();
-  const [{ data }] = useMediaQuery({
+  const [{ data, error, fetching }] = useMediaQuery({
     variables: {
       id: parseInt(query.id as string),
       type: "ANIME" as MediaType,
     },
   });
 
-  if (!data?.Media) {
+  if (fetching) {
+    return (
+      <Box>
+        <NavBar />
+        <Flex h="100vh" w="100vw" justifyContent="center" alignItems="center">
+          <Spinner />
+        </Flex>
+      </Box>
+    );
+  }
+
+  if (error) {
     return <Error statusCode={404} />;
+  }
+
+  if (!data) {
+    return null;
   }
 
   return (
     <>
       <Head>
-        <title>{data.Media.title?.userPreferred + ": AnimeList"}</title>
+        <title>{data?.Media?.title?.userPreferred + ": AnimeList"}</title>
       </Head>
       <Box>
         <NavBar />
         <Box>
           <LazyImageLoadNext
-            src={data.Media.bannerImage as string}
+            src={data?.Media?.bannerImage as string}
             width={1920}
             height={500}
             objectFit="cover"
@@ -55,9 +70,9 @@ const Anime: NextPage<AnimeProps> = () => {
               <GridItem>
                 <LazyImageLoadNext
                   src={
-                    (data.Media.coverImage?.extraLarge ||
-                      data.Media.coverImage?.large ||
-                      data.Media.coverImage?.medium) as string
+                    (data?.Media?.coverImage?.extraLarge ||
+                      data?.Media?.coverImage?.large ||
+                      data?.Media?.coverImage?.medium) as string
                   }
                   width={200}
                   height={300}
@@ -71,13 +86,13 @@ const Anime: NextPage<AnimeProps> = () => {
                   }}
                 />
               </GridItem>
-              <GridItem fontFamily="inter">
+              <GridItem fontFamily="inter" mt={4}>
                 <Text fontWeight={700} fontSize="xx-large" color="gray.400">
-                  {data.Media.title?.userPreferred}
+                  {data?.Media?.title?.userPreferred}
                 </Text>
                 <Text
                   dangerouslySetInnerHTML={{
-                    __html: data.Media.description as string,
+                    __html: data?.Media?.description as string,
                   }}
                   fontSize="sm"
                   color="gray.500"
@@ -90,4 +105,5 @@ const Anime: NextPage<AnimeProps> = () => {
     </>
   );
 };
+
 export default withUrqlClient(createUrqlClient, { ssr: true })(Anime);
