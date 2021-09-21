@@ -45,7 +45,7 @@ export const BrowsePopOverItems = () => {
             fontWeight={400}
             className="small__navs__anime"
             fontSize="sm"
-            width="90%"
+            width="98%"
             justifyContent="space-between"
           >
             <Link href="/anime">
@@ -91,7 +91,7 @@ export const BrowsePopOverItems = () => {
             className="small__navs__anime"
             color="gray.400"
             fontSize="sm"
-            width="90%"
+            width="98%"
             justifyContent="space-between"
           >
             <Link href="/anime">

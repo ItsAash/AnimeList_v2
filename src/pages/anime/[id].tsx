@@ -43,7 +43,7 @@ const Anime: NextPage<AnimeProps> = () => {
   }
 
   return (
-    <>
+    <Box overflowX="hidden">
       <Head>
         <title>{data?.Media?.title?.userPreferred + ": AnimeList"}</title>
       </Head>
@@ -75,7 +75,8 @@ const Anime: NextPage<AnimeProps> = () => {
                       data?.Media?.coverImage?.medium) as string
                   }
                   width={200}
-                  height={300}
+                  height={278.125}
+                  className="coverImage"
                   style={{
                     mt: -57,
                     bg: "gray.300",
@@ -85,24 +86,31 @@ const Anime: NextPage<AnimeProps> = () => {
                     },
                   }}
                 />
+                <style jsx global>
+                  {`
+                    .coverImage {
+                      border-radius: 5px !important;
+                    }
+                  `}
+                </style>
               </GridItem>
               <GridItem fontFamily="inter" mt={4}>
-                <Text fontWeight={700} fontSize="xx-large" color="gray.400">
+                <Text fontWeight={700} fontSize="5xl" color="gray.400">
                   {data?.Media?.title?.userPreferred}
                 </Text>
-                <Text
+                {/* <Text
                   dangerouslySetInnerHTML={{
                     __html: data?.Media?.description as string,
                   }}
                   fontSize="sm"
                   color="gray.500"
-                ></Text>
+                ></Text> */}
               </GridItem>
             </Grid>
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

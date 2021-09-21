@@ -1,5 +1,3 @@
-import { mode } from "@chakra-ui/theme-tools";
-
 const Button = {
   sizes: {
     sm: {
@@ -22,6 +20,18 @@ const Button = {
       borderRadius: "none",
       alignItems: "center",
       letterSpacing: "0.4px",
+    },
+    drawerButtons: {
+      margin: "0 auto",
+      fontFamily: "poppins",
+    },
+    normal: {
+      _hover: {
+        backgroundColor: "none",
+      },
+      _focus: {
+        border: "none",
+      },
     },
     accent: {
       backgroundColor: "accent.300",

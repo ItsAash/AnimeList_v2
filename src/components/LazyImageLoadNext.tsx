@@ -4,6 +4,7 @@ import React, { ReactElement, SyntheticEvent, useState } from "react";
 
 interface ExtraProps {
   style?: SkeletonProps;
+  reference?: React.MutableRefObject<any>;
 }
 
 const LazyImageLoadNext: React.FC<ImageProps & ExtraProps> = ({
@@ -29,6 +30,7 @@ const LazyImageLoadNext: React.FC<ImageProps & ExtraProps> = ({
       >
         <Image
           className="next_lazy_images"
+          loading="lazy"
           onLoad={onLoadCallback}
           {...props}
         />

@@ -8,17 +8,23 @@ import {
   IconButton,
   Popover,
   PopoverTrigger,
+  Stack,
   Tooltip,
   useBreakpointValue,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { BiSearchAlt } from "react-icons/bi";
-import React from "react";
+import { BiMenuAltLeft, BiSearchAlt } from "react-icons/bi";
+import React, { useRef } from "react";
 import Hero from "../Hero";
 import { DarkModeSwitch } from "../DarkModeSwitch";
 import { BrowsePopOver } from "./BrowsePopOver";
+import { MenuDrawer } from "../Drawer/Drawer";
 
 export const NavBar: React.FC<BoxProps> = (props) => {
   const heroWidth = useBreakpointValue({ base: 40, md: 168 });
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const menuBtnRef = useRef();
   return (
     <Box w="100vw" p={5} {...props}>
       <Grid
@@ -30,7 +36,27 @@ export const NavBar: React.FC<BoxProps> = (props) => {
         ]}
       >
         <GridItem>
-          <Hero w={heroWidth} h={40} />
+          <Stack direction="row">
+            <IconButton
+              aria-label="menu"
+              border="none"
+              _focus={{}}
+              ref={menuBtnRef.current}
+              icon={<BiMenuAltLeft />}
+              variant="solid"
+              fontSize="35px"
+              background="none"
+              isRound
+              onClick={onOpen}
+            />
+            <MenuDrawer
+              isOpen={isOpen}
+              onClose={onClose}
+              btnRef={menuBtnRef}
+              heroWidth={heroWidth}
+            />
+            <Hero w={heroWidth} h={40} />
+          </Stack>
         </GridItem>
         <Flex
           className="nav__bar"
@@ -58,6 +84,7 @@ export const NavBar: React.FC<BoxProps> = (props) => {
               size="md"
               variant="solid"
               background="none"
+              _focus={{}}
               mr={2}
               icon={<BiSearchAlt />}
               fontSize="20px"

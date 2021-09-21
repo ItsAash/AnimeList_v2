@@ -5,6 +5,7 @@ import { colors } from "./colors";
 
 import Button from "./components/button";
 import Skeleton from "./components/skeleton";
+import Drawer from "./components/drawer";
 import "@fontsource/poppins";
 import "@fontsource/inter";
 
@@ -43,9 +44,17 @@ const theme = extendTheme({
     "8xl": "6rem",
     "9xl": "8rem",
   },
+  sizes: {
+    xs: "17em",
+    sm: "20em",
+    md: "24em",
+    lg: "28em",
+    xl: "32em",
+  },
   components: {
     Button,
     Skeleton,
+    Drawer,
   },
 });
 
