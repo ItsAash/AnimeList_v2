@@ -24,6 +24,7 @@ const Button = {
     drawerButtons: {
       margin: "0 auto",
       fontFamily: "poppins",
+      justifyContent: "start",
     },
     normal: {
       _hover: {

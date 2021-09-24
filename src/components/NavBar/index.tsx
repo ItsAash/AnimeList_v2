@@ -6,19 +6,16 @@ import {
   Grid,
   GridItem,
   IconButton,
-  Popover,
-  PopoverTrigger,
   Stack,
   Tooltip,
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { BiMenuAltLeft, BiSearchAlt } from "react-icons/bi";
 import React, { useRef } from "react";
-import Hero from "../Hero";
+import { BiMenuAltLeft, BiSearchAlt } from "react-icons/bi";
 import { DarkModeSwitch } from "../DarkModeSwitch";
-import { BrowsePopOver } from "./BrowsePopOver";
 import { MenuDrawer } from "../Drawer/Drawer";
+import Hero from "../Hero";
 
 export const NavBar: React.FC<BoxProps> = (props) => {
   const heroWidth = useBreakpointValue({ base: 40, md: 168 });
@@ -31,7 +28,7 @@ export const NavBar: React.FC<BoxProps> = (props) => {
         templateColumns={[
           "auto 1fr 1fr",
           "auto 1fr 1fr",
-          "repeat(3, 1fr)",
+          "repeat(2, 1fr)",
           null,
         ]}
       >
@@ -58,25 +55,6 @@ export const NavBar: React.FC<BoxProps> = (props) => {
             <Hero w={heroWidth} h={40} />
           </Stack>
         </GridItem>
-        <Flex
-          className="nav__bar"
-          alignItems="center"
-          justifyContent="space-evenly"
-          fontFamily="poppins"
-        >
-          <Popover closeOnEsc isLazy placement="bottom">
-            <PopoverTrigger>
-              <Button variant="navElement">Browse</Button>
-            </PopoverTrigger>
-            <BrowsePopOver />
-          </Popover>
-          <Button variant="navElement" href="/forums">
-            Forums
-          </Button>
-          <Button variant="navElement" href="/about">
-            About
-          </Button>
-        </Flex>
         <Flex justifyContent="flex-end">
           <Tooltip label="Search" hasArrow>
             <IconButton
