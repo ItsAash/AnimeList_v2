@@ -22,19 +22,18 @@ import {
   UnorderedList,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 import { BiGroup, BiHome } from "react-icons/bi";
+import { BsPinAngle } from "react-icons/bs";
 import { CgBrowse } from "react-icons/cg";
+import { FaDiscord, FaFacebook, FaGithub, FaTwitter } from "react-icons/fa";
 import { IoDiceOutline } from "react-icons/io5";
+import { SiGithubsponsors } from "react-icons/si";
 import Hero from "../Hero";
 import { BrowsePopOver } from "../NavBar/BrowsePopOver";
-import { NavElement } from "./NavElements";
 import { DrawerAccordionItem } from "./Accordion";
-import { BsPlay, BsPinAngle } from "react-icons/bs";
-import { IoMdBook } from "react-icons/io";
-import { SiGithubsponsors } from "react-icons/si";
-import Link from "next/link";
-import { FaDiscord, FaFacebook, FaReddit, FaTwitter } from "react-icons/fa";
+import { NavElement } from "./NavElements";
 
 interface MenuDrawerProps {
   isOpen: boolean;
@@ -114,7 +113,6 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                     <NavElement
                       hoverBackground={hoverBackground}
                       href="/anime/random"
-                      Icon={BsPlay}
                       width="90%"
                     >
                       Anime
@@ -124,7 +122,6 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                     <NavElement
                       hoverBackground={hoverBackground}
                       href="/manga/random"
-                      Icon={IoMdBook}
                       width="90%"
                     >
                       Manga
@@ -167,7 +164,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                   <ListItem>
                     <NavElement
                       hoverBackground={hoverBackground}
-                      href="/anime/random"
+                      href="/rules"
                       width="90%"
                     >
                       Site Rules
@@ -176,7 +173,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                   <ListItem>
                     <NavElement
                       hoverBackground={hoverBackground}
-                      href="/manga/random"
+                      href="/announcements"
                       width="90%"
                     >
                       Annoucements
@@ -240,8 +237,8 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                     fontSize="2xl"
                   ></IconButton>
                   <IconButton
-                    aria-label="reddit"
-                    icon={<FaReddit />}
+                    aria-label="github"
+                    icon={<FaGithub />}
                     variant="ouline"
                     fontSize="2xl"
                   ></IconButton>
@@ -254,7 +251,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
                 </HStack>
               </Box>
               <Text w="100%" textAlign="center">
-                Made By aash {"<3"}
+                Made by aash {"<3"}
               </Text>
             </Box>
           </DrawerFooter>

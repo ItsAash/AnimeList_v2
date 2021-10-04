@@ -49,16 +49,24 @@ const Anime: NextPage<AnimeProps> = () => {
         <title>{data?.Media?.title?.userPreferred + ": AnimeList"}</title>
       </Head>
       <Box>
-        <NavBar />
+        <NavBar pos="fixed" zIndex="2000" />
         <Box>
           <LazyImageLoadNext
             src={data?.Media?.bannerImage as string}
             width={1920}
             height={500}
             objectFit="cover"
-            objectPosition="top"
+            // objectPosition="top"
             style={{
               bg: "gray.400",
+              _after: {
+                content: "''",
+                position: "absolute",
+                background:
+                  "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
+                width: "100%",
+                height: "100%",
+              },
             }}
           />
           <Box>

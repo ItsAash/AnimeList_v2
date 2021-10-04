@@ -11,7 +11,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { BiMenuAltLeft, BiSearchAlt } from "react-icons/bi";
 import { DarkModeSwitch } from "../DarkModeSwitch";
 import { MenuDrawer } from "../Drawer/Drawer";
@@ -22,16 +22,29 @@ export const NavBar: React.FC<BoxProps> = (props) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const menuBtnRef = useRef();
+
+  const [colorChange, setColorchange] = useState(false);
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    } else {
+      setColorchange(false);
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", changeNavbarColor);
+  }, []);
+
   return (
-    <Box w="100vw" p={5} {...props}>
-      <Grid
-        templateColumns={[
-          "auto 1fr 1fr",
-          "auto 1fr 1fr",
-          "repeat(2, 1fr)",
-          null,
-        ]}
-      >
+    <Box
+      w="100vw"
+      p={5}
+      transition="background 0.3s ease-in"
+      background={"rgba(0,0,0," + (colorChange ? "0.75" : "0") + ")"}
+      {...props}
+    >
+      <Grid templateColumns={["repeat(2, 1fr)", null]}>
         <GridItem>
           <Stack direction="row">
             <IconButton
@@ -45,6 +58,10 @@ export const NavBar: React.FC<BoxProps> = (props) => {
               background="none"
               isRound
               onClick={onOpen}
+              color="white"
+              _hover={{
+                background: "whiteAlpha.300",
+              }}
             />
             <MenuDrawer
               isOpen={isOpen}
@@ -66,9 +83,19 @@ export const NavBar: React.FC<BoxProps> = (props) => {
               mr={2}
               icon={<BiSearchAlt />}
               fontSize="20px"
+              color="white"
+              _hover={{
+                background: "whiteAlpha.300",
+              }}
             />
           </Tooltip>
-          <DarkModeSwitch mr={2} />
+          <DarkModeSwitch
+            _hover={{
+              background: "whiteAlpha.300",
+            }}
+            color="white"
+            mr={2}
+          />
           <Button variant="solid" mr={2}>
             Login
           </Button>

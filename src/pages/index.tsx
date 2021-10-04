@@ -4,11 +4,14 @@ import Link from "next/link";
 import { withUrqlClient } from "next-urql";
 import React from "react";
 import { NavBar } from "../components/NavBar";
+
 import { createUrqlClient } from "../utils/createUrqlClient";
+import SpotlightSwiper from "../components/SpotlightSwiper";
 
 const Index = () => (
   <Box>
-    <NavBar />
+    <NavBar pos="fixed" zIndex="2000" />
+    <SpotlightSwiper />
     <Link href="/anime/1">
       <Button variant="solid">CowboyBepop</Button>
     </Link>
