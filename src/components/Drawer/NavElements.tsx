@@ -9,17 +9,19 @@ interface NavElementProps {
   Icon?: IconType;
   children: any;
   hoverBackground: string;
+  width?: string;
 }
 export const NavElement: React.FC<NavElementProps> = ({
   href,
   children,
   Icon,
   hoverBackground,
+  width = "80%",
 }) => {
   return (
     <Link href={href}>
       <Box
-        w="80%"
+        w={width}
         m="0 auto"
         cursor="pointer"
         _hover={{

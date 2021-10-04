@@ -35,6 +35,7 @@ const Anime: NextPage<AnimeProps> = () => {
   }
 
   if (error) {
+    console.error(error);
     return <Error statusCode={404} />;
   }
 
@@ -98,13 +99,6 @@ const Anime: NextPage<AnimeProps> = () => {
                 <Text fontWeight={700} fontSize="5xl" color="gray.400">
                   {data?.Media?.title?.userPreferred}
                 </Text>
-                {/* <Text
-                  dangerouslySetInnerHTML={{
-                    __html: data?.Media?.description as string,
-                  }}
-                  fontSize="sm"
-                  color="gray.500"
-                ></Text> */}
               </GridItem>
             </Grid>
           </Box>
