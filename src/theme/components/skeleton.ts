@@ -15,6 +15,8 @@ const Skeleton = {
       "::after": {
         visibility: "visible !important",
         position: "absolute",
+        w: "100%",
+        h: "100%",
         top: "0",
         right: "0",
         bottom: "0",

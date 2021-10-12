@@ -6,6 +6,7 @@ import {
   Icon,
   Tag,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import LazyImageLoadNext from "../LazyImageLoadNext";
@@ -22,6 +23,11 @@ interface SlideProps {
 }
 
 export const Slide: React.FC<SlideProps> = ({ anime, idx }) => {
+  const overlayGradient = useColorModeValue(
+    "radial-gradient(circle at right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.75) 76%, rgba(255,255,255,0.8) 100%)",
+    "radial-gradient(circle at right, rgba(0,0,0,0) 0%, rgba(6,12,20,0.8) 76%, rgba(6,12,20,0.9) 100%)"
+  );
+
   return (
     <Box w="100%" className="keen-slider__slide">
       <Box
@@ -34,7 +40,7 @@ export const Slide: React.FC<SlideProps> = ({ anime, idx }) => {
         transfrom="auto"
         minHeight="15rem"
         fontFamily="inter"
-        color="white"
+        // color="white"
       >
         <Text color="accent.300" fontSize="xl" lineHeight="1.6rem">
           #{idx} Spotlight{" "}
@@ -58,48 +64,36 @@ export const Slide: React.FC<SlideProps> = ({ anime, idx }) => {
             }`}
           </Box>
         </HStack>
-        <DarkMode>
-          <HStack pb="3">
-            {anime.genres.map((genre: string, idx: number) => (
-              <Box key={idx}>{idx <= 3 && <Tag size="sm">{genre}</Tag>}</Box>
-            ))}
-          </HStack>
-        </DarkMode>
+        <HStack pb="3">
+          {anime.genres.map((genre: string, idx: number) => (
+            <Box key={idx}>{idx <= 3 && <Tag size="sm">{genre}</Tag>}</Box>
+          ))}
+        </HStack>
         <Text
           fontSize="xs"
           dangerouslySetInnerHTML={{ __html: anime.description }}
           w="90%"
           noOfLines={[3, 4, 5]}
         />
-        <DarkMode>
-          <Link href={`/anime/${anime.id}`}>
-            <Button
-              mt="2"
-              color="auto"
-              variant="solid"
-              leftIcon={<AiOutlineInfoCircle />}
-            >
-              More Info
-            </Button>
-          </Link>
-        </DarkMode>
+        <Link href={`/anime/${anime.id}`}>
+          <Button
+            mt="2"
+            color="auto"
+            variant="solid"
+            leftIcon={<AiOutlineInfoCircle />}
+          >
+            More Info
+          </Button>
+        </Link>
       </Box>
       <LazyImageLoadNext
         src={anime.bannerImage}
         objectFit="cover"
         width={1366}
         height={400}
+        overlay={overlayGradient}
         style={{
           filter: "brightness(70%)",
-          _after: {
-            content: "''",
-            position: "absolute",
-            background:
-              // "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 86%)",
-              "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.24413515406162467) 50%, rgba(30,37,46,1) 100%)",
-            width: "100%",
-            height: "100%",
-          },
         }}
       />
     </Box>

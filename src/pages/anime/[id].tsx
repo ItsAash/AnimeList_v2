@@ -57,14 +57,14 @@ const Anime: NextPage<AnimeProps> = () => {
             // objectPosition="top"
             style={{
               bg: "gray.400",
-              _after: {
-                content: "''",
-                position: "absolute",
-                background:
-                  "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
-                width: "100%",
-                height: "100%",
-              },
+              // _after: {
+              //   content: "''",
+              //   position: "absolute",
+              //   background:
+              //     "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
+              //   width: "100%",
+              //   height: "100%",
+              // },
             }}
           />
           <Box>

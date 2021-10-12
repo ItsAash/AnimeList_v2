@@ -58,7 +58,6 @@ export const NavBar: React.FC<BoxProps> = (props) => {
               background="none"
               isRound
               onClick={onOpen}
-              color="white"
               _hover={{
                 background: "whiteAlpha.300",
               }}
@@ -83,7 +82,6 @@ export const NavBar: React.FC<BoxProps> = (props) => {
               mr={2}
               icon={<BiSearchAlt />}
               fontSize="20px"
-              color="white"
               _hover={{
                 background: "whiteAlpha.300",
               }}
@@ -93,7 +91,6 @@ export const NavBar: React.FC<BoxProps> = (props) => {
             _hover={{
               background: "whiteAlpha.300",
             }}
-            color="white"
             mr={2}
           />
           <Button variant="solid" mr={2}>
