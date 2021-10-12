@@ -3,13 +3,20 @@ import theme from "../theme";
 import { AppProps } from "next/app";
 import React, { useEffect } from "react";
 
-import { createClient, Provider } from "urql";
+import {
+  cacheExchange,
+  createClient,
+  dedupExchange,
+  fetchExchange,
+  Provider,
+  ssrExchange,
+} from "urql";
 import { useRouter } from "next/router";
 import NProgress from "nprogress";
 
-const client = createClient({
-  url: "https://graphql.anilist.co",
-});
+// const client = createClient({
+//   url: "https://graphql.anilist.co",
+// });
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -34,11 +41,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <Provider value={client}>
-      <ChakraProvider resetCSS theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </Provider>
+    <ChakraProvider resetCSS theme={theme}>
+      <Component {...pageProps} />
+    </ChakraProvider>
   );
 }
 

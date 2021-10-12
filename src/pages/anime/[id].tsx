@@ -10,9 +10,7 @@ import { NavBar } from "../../components/NavBar";
 import { MediaType, useMediaQuery } from "../../generated/graphql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 
-interface AnimeProps {
-  id?: number;
-}
+interface AnimeProps {}
 
 const Anime: NextPage<AnimeProps> = () => {
   const { query } = useRouter();
