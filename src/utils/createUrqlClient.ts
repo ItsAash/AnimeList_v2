@@ -1,7 +1,6 @@
-import { dedupExchange, fetchExchange, ssrExchange } from "urql";
+import { dedupExchange, fetchExchange } from "urql";
 import { cacheExchange } from "@urql/exchange-graphcache";
-import { isServer } from "./isServer";
-
+// import { isServer } from "./isServer";
 // import { betterUpdateQuery } from "./betterUpdateQuery";
 
 // const ssr = ssrExchange({
