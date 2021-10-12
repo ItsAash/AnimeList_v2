@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  DarkMode,
   HStack,
   Icon,
   Tag,
