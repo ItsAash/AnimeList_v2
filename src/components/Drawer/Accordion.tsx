@@ -2,11 +2,8 @@ import { Box, HStack } from "@chakra-ui/layout";
 import {
   AccordionItem,
   AccordionButton,
-  Button,
   AccordionIcon,
   AccordionPanel,
-  ComponentWithAs,
-  AccordionItemProps,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";

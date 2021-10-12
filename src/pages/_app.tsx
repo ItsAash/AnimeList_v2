@@ -2,15 +2,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../theme";
 import { AppProps } from "next/app";
 import React, { useEffect } from "react";
-
-import {
-  cacheExchange,
-  createClient,
-  dedupExchange,
-  fetchExchange,
-  Provider,
-  ssrExchange,
-} from "urql";
 import { useRouter } from "next/router";
 import NProgress from "nprogress";
 
