@@ -1,41 +1,5 @@
 query Media($id: Int, $type: MediaType) {
   Media(id: $id, type: $type) {
-    __typename
-    id
-    idMal
-    title {
-      __typename
-      english
-      romaji
-      userPreferred
-      native
-    }
-    format
-    status
-    description
-    season
-    seasonYear
-    episodes
-    chapters
-    volumes
-    coverImage {
-      __typename
-      extraLarge
-      large
-      medium
-    }
-    bannerImage
-    genres
-    synonyms
-    averageScore
-    meanScore
-    popularity
-    trending
-    tags {
-      __typename
-      name
-      isAdult
-    }
-    isAdult
+    ...SingleMediaFragment
   }
 }

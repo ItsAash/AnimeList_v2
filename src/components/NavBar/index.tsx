@@ -2,6 +2,7 @@ import {
   Box,
   BoxProps,
   Button,
+  DarkMode,
   Flex,
   Grid,
   GridItem,
@@ -54,6 +55,7 @@ export const NavBar: React.FC<BoxProps> = (props) => {
               ref={menuBtnRef.current}
               icon={<BiMenuAltLeft />}
               variant="solid"
+              color="white"
               fontSize="35px"
               background="none"
               isRound
@@ -80,6 +82,7 @@ export const NavBar: React.FC<BoxProps> = (props) => {
               background="none"
               _focus={{}}
               mr={2}
+              color="white"
               icon={<BiSearchAlt />}
               fontSize="20px"
               _hover={{
@@ -92,10 +95,13 @@ export const NavBar: React.FC<BoxProps> = (props) => {
               background: "whiteAlpha.300",
             }}
             mr={2}
+            color="white"
           />
-          <Button variant="solid" mr={2}>
-            Login
-          </Button>
+          <DarkMode>
+            <Button variant="solid" mr={2} color="white">
+              Login
+            </Button>
+          </DarkMode>
           <Button variant="accent">Signup</Button>
         </Flex>
       </Grid>

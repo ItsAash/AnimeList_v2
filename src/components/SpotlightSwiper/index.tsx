@@ -3,12 +3,19 @@ import KeenSlider, { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
 import { MdOutlineNavigateBefore, MdOutlineNavigateNext } from "react-icons/md";
-import { data } from "./data";
 import { Slide } from "./Slide";
 import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { UseQueryState } from "urql";
+import { MediaListQuery } from "../../generated/graphql";
 
-export default function SpotlightSwiper() {
+interface SpotlightSwiperProps {
+  response: UseQueryState<MediaListQuery, object>;
+}
+
+export const SpotlightSwiper: React.FC<SpotlightSwiperProps> = ({
+  response: { data, fetching },
+}) => {
   const [pause, setPause] = React.useState(false);
   const timer = React.useRef<ReturnType<typeof setInterval>>();
   const [ref, slider] = useKeenSlider<HTMLDivElement>({
@@ -45,8 +52,13 @@ export default function SpotlightSwiper() {
   return (
     <Box position="relative">
       <Box ref={ref} className="keen-slider">
-        {data.Page.media.map((anime, idx) => (
-          <Slide idx={idx + 1} key={idx} anime={anime}></Slide>
+        {data?.Page?.media?.map((anime, idx) => (
+          <Slide
+            key={idx}
+            isFetching={fetching}
+            idx={idx + 1}
+            anime={anime}
+          ></Slide>
         ))}
       </Box>
       <Flex
@@ -56,9 +68,10 @@ export default function SpotlightSwiper() {
         right="0"
         flexDirection="column-reverse"
         p="1rem"
+        zIndex="10"
       >
         <Arrow
-          aria-label="Previous  "
+          aria-label="Previous"
           slider={slider}
           Icon={MdOutlineNavigateBefore}
           timer={timer}
@@ -72,7 +85,7 @@ export default function SpotlightSwiper() {
       </Flex>
     </Box>
   );
-}
+};
 
 interface ArrowProps {
   "aria-label": string;

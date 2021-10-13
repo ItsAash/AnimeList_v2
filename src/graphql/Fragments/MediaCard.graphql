@@ -1,0 +1,43 @@
+fragment MediaCardFragment on Media {
+  __typename
+  id
+  idMal
+  title {
+    __typename
+    userPreferred
+  }
+  format
+  status
+  description
+  season
+  seasonYear
+  episodes
+  chapters
+  volumes
+  startDate {
+    __typename
+    year
+    month
+    day
+  }
+  endDate {
+    __typename
+    year
+    month
+    day
+  }
+  coverImage {
+    __typename
+    extraLarge
+    large
+    medium
+  }
+  bannerImage
+  genres
+  synonyms
+  averageScore
+  meanScore
+  popularity
+  trending
+  isAdult
+}

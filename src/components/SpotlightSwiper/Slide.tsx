@@ -19,16 +19,23 @@ import Link from "next/link";
 interface SlideProps {
   anime: any;
   idx: number;
+  isFetching: boolean;
 }
 
-export const Slide: React.FC<SlideProps> = ({ anime, idx }) => {
+export const Slide: React.FC<SlideProps> = ({ anime, idx, isFetching }) => {
   const overlayGradient = useColorModeValue(
     "radial-gradient(circle at right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.75) 76%, rgba(255,255,255,0.8) 100%)",
     "radial-gradient(circle at right, rgba(0,0,0,0) 0%, rgba(6,12,20,0.8) 76%, rgba(6,12,20,0.9) 100%)"
   );
 
   return (
-    <Box w="100%" className="keen-slider__slide">
+    <Box
+      minW="100%"
+      minH="100%"
+      w="100%"
+      h="100%"
+      className="keen-slider__slide"
+    >
       <Box
         position="absolute"
         w="max-content"
@@ -39,10 +46,9 @@ export const Slide: React.FC<SlideProps> = ({ anime, idx }) => {
         transfrom="auto"
         minHeight="15rem"
         fontFamily="inter"
-        // color="white"
       >
         <Text color="accent.300" fontSize="xl" lineHeight="1.6rem">
-          #{idx} Spotlight{" "}
+          #{idx} Spotlight
         </Text>
         <Text noOfLines={2} fontSize="3xl" fontWeight="extrabold">
           {anime.title.userPreferred}
@@ -54,7 +60,7 @@ export const Slide: React.FC<SlideProps> = ({ anime, idx }) => {
           </Box>
           <Box>
             <Icon pos="relative" top="-2px" as={IoTime} />{" "}
-            {anime.duration + "m"}
+            {(anime.duration || "? ") + "m"}
           </Box>
           <Box>
             <Icon pos="relative" top="-2px" as={BsFillCalendarFill} />{" "}
@@ -85,16 +91,18 @@ export const Slide: React.FC<SlideProps> = ({ anime, idx }) => {
           </Button>
         </Link>
       </Box>
-      <LazyImageLoadNext
-        src={anime.bannerImage}
-        objectFit="cover"
-        width={1366}
-        height={400}
-        overlay={overlayGradient}
-        style={{
-          filter: "brightness(70%)",
-        }}
-      />
+      {!isFetching && (
+        <LazyImageLoadNext
+          src={anime.bannerImage as string}
+          objectFit="cover"
+          width={1366}
+          height={420}
+          overlay={overlayGradient}
+          style={{
+            filter: "brightness(100%)",
+          }}
+        />
+      )}
     </Box>
   );
 };

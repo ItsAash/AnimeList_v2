@@ -1,0 +1,52 @@
+fragment SingleMediaFragment on Media {
+  __typename
+  id
+  idMal
+  title {
+    __typename
+    english
+    romaji
+    userPreferred
+    native
+  }
+  format
+  status
+  description
+  season
+  seasonYear
+  episodes
+  chapters
+  duration
+  volumes
+  startDate {
+    __typename
+    year
+    month
+    day
+  }
+  endDate {
+    __typename
+    year
+    month
+    day
+  }
+  coverImage {
+    __typename
+    extraLarge
+    large
+    medium
+  }
+  bannerImage
+  genres
+  synonyms
+  averageScore
+  meanScore
+  popularity
+  trending
+  tags {
+    __typename
+    name
+    isAdult
+  }
+  isAdult
+}
