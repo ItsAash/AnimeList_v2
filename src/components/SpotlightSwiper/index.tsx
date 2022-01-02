@@ -8,6 +8,7 @@ import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { UseQueryState } from "urql";
 import { MediaListQuery } from "../../generated/graphql";
+import { AnimeData } from "../../utils/dummyAnimeData";
 
 interface SpotlightSwiperProps {
   response: UseQueryState<MediaListQuery, object>;
@@ -52,14 +53,24 @@ export const SpotlightSwiper: React.FC<SpotlightSwiperProps> = ({
   return (
     <Box position="relative">
       <Box ref={ref} className="keen-slider">
-        {data?.Page?.media?.map((anime, idx) => (
-          <Slide
-            key={idx}
-            isFetching={fetching}
-            idx={idx + 1}
-            anime={anime}
-          ></Slide>
-        ))}
+        <>
+          {fetching ? (
+            <>
+              <Slide key={0} isFetching={true} idx={1} anime={AnimeData} />
+            </>
+          ) : (
+            <>
+              {data?.Page?.media?.map((anime, idx) => (
+                <Slide
+                  key={idx}
+                  isFetching={fetching}
+                  idx={idx + 1}
+                  anime={anime}
+                ></Slide>
+              ))}
+            </>
+          )}
+        </>
       </Box>
       <Flex
         position="absolute"

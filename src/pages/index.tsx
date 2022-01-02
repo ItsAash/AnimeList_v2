@@ -27,11 +27,9 @@ const Index = () => {
         variant="wave"
         h="100%"
         w="100vw"
-      >
-        {(!res.fetching || res.data?.Page?.media) && (
-          <SpotlightSwiper response={res} />
-        )}
-      </Skeleton>
+        className="Placeholder Skeleton"
+      />
+      <SpotlightSwiper response={res} />
       <Link href="/anime/1">
         <Button variant="solid">CowboyBepop</Button>
       </Link>

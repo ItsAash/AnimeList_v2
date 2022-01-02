@@ -9,10 +9,11 @@ interface ExtraProps {
   overlay?: string;
 }
 
-const LazyImageLoadNext: React.FC<ImageProps & ExtraProps> = ({
+const LazyNextImage: React.FC<ImageProps & ExtraProps> = ({
   onLoad,
   style,
   overlay,
+  src,
   ...props
 }): ReactElement => {
   const [isReady, setIsReady] = useState(false);
@@ -22,7 +23,6 @@ const LazyImageLoadNext: React.FC<ImageProps & ExtraProps> = ({
     setIsReady(true);
     typeof onLoad === "function" && onLoad(e);
   };
-
   return (
     <>
       {isReady && (
@@ -38,6 +38,8 @@ const LazyImageLoadNext: React.FC<ImageProps & ExtraProps> = ({
         ></Box>
       )}
       <Skeleton
+        w={props.width}
+        h={props.height}
         pos="relative"
         className="next_image_outer_div"
         variant="wave"
@@ -49,6 +51,7 @@ const LazyImageLoadNext: React.FC<ImageProps & ExtraProps> = ({
           className="next_lazy_images"
           loading="lazy"
           onLoad={onLoadCallback}
+          src={src}
           {...props}
         />
       </Skeleton>
@@ -56,4 +59,4 @@ const LazyImageLoadNext: React.FC<ImageProps & ExtraProps> = ({
   );
 };
 
-export default LazyImageLoadNext;
+export default LazyNextImage;
