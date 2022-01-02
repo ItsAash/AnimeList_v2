@@ -1,11 +1,10 @@
-import { Box, Flex, Grid, GridItem, Spinner, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { withUrqlClient } from "next-urql";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import Error from "next/error";
 import React from "react";
-import LazyImageLoadNext from "../../components/LazyImageLoadNext";
 import { NavBar } from "../../components/NavBar";
 import { MediaType, useMediaQuery } from "../../generated/graphql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
@@ -25,9 +24,6 @@ const Anime: NextPage<AnimeProps> = () => {
     return (
       <Box>
         <NavBar />
-        <Flex h="100vh" w="100vw" justifyContent="center" alignItems="center">
-          <Spinner />
-        </Flex>
       </Box>
     );
   }
@@ -47,68 +43,7 @@ const Anime: NextPage<AnimeProps> = () => {
         <title>{data?.Media?.title?.userPreferred + ": AnimeList"}</title>
       </Head>
       <Box>
-        <NavBar pos="fixed" zIndex="2000" />
-        <Box>
-          <LazyImageLoadNext
-            src={data?.Media?.bannerImage as string}
-            width={1920}
-            height={500}
-            objectFit="cover"
-            // objectPosition="top"
-            style={{
-              bg: "gray.400",
-              // _after: {
-              //   content: "''",
-              //   position: "absolute",
-              //   background:
-              //     "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
-              //   width: "100%",
-              //   height: "100%",
-              // },
-            }}
-          />
-          <Box>
-            <Grid
-              templateColumns="auto 2fr"
-              w={["95%", "90%", "85%", "80%"]}
-              m="0 auto"
-              gap={9}
-            >
-              <GridItem>
-                <LazyImageLoadNext
-                  src={
-                    (data?.Media?.coverImage?.extraLarge ||
-                      data?.Media?.coverImage?.large ||
-                      data?.Media?.coverImage?.medium) as string
-                  }
-                  width={200}
-                  height={278.125}
-                  className="coverImage"
-                  style={{
-                    mt: -57,
-                    bg: "gray.300",
-                    opacity: 1,
-                    _after: {
-                      animationDelay: ".2s",
-                    },
-                  }}
-                />
-                <style jsx global>
-                  {`
-                    .coverImage {
-                      border-radius: 5px !important;
-                    }
-                  `}
-                </style>
-              </GridItem>
-              <GridItem fontFamily="inter" mt={4}>
-                <Text fontWeight={700} fontSize="5xl" color="gray.400">
-                  {data?.Media?.title?.userPreferred}
-                </Text>
-              </GridItem>
-            </Grid>
-          </Box>
-        </Box>
+        <NavBar pos="fixed" zIndex="2000" />         
       </Box>
     </Box>
   );
