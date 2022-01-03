@@ -52,12 +52,12 @@ export const Slide: React.FC<SlideProps> = ({ anime, idx, isFetching }) => {
             #{idx} Spotlight
           </Text>
         </Skeleton>
-        <Skeleton variant="wave" isLoaded={!isFetching} mt={2}>
+        <Skeleton variant="wave" isLoaded={!isFetching} mt={isFetching ? 2 : 0}>
           <Text noOfLines={2} fontSize="3xl" fontWeight="extrabold">
             {anime.title.userPreferred}
           </Text>
         </Skeleton>
-        <Skeleton variant="wave" isLoaded={!isFetching} mt={2}>
+        <Skeleton variant="wave" isLoaded={!isFetching} mt={isFetching ? 2 : 0}>
           <HStack pb="2" gridGap="2">
             <Box lineHeight="1.3rem">
               <Icon pos="relative" top="-2px" as={GoPlay} />{" "}
@@ -82,7 +82,7 @@ export const Slide: React.FC<SlideProps> = ({ anime, idx, isFetching }) => {
             </Skeleton>
           ))}
         </HStack>
-        <Skeleton variant="wave" isLoaded={!isFetching} mt={2}>
+        <Skeleton variant="wave" isLoaded={!isFetching} mt={isFetching ? 2 : 0}>
           <Text
             fontSize="xs"
             dangerouslySetInnerHTML={{ __html: anime.description }}
@@ -90,7 +90,7 @@ export const Slide: React.FC<SlideProps> = ({ anime, idx, isFetching }) => {
             noOfLines={[3, 4, 5]}
           />
         </Skeleton>
-        <Skeleton variant="wave" isLoaded={!isFetching} mt={2}>
+        <Skeleton variant="wave" isLoaded={!isFetching} mt={isFetching ? 2 : 0}>
           <Link href={`/anime/${anime.id}`}>
             <Button
               mt="2"
